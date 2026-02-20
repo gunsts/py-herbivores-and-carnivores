@@ -1,1 +1,28 @@
-# write your code here
+class Animal:
+    alive = []
+
+    def __init__(self, name: str) -> None:
+        self.health = 100
+        self.name = name
+        self.hidden = False
+        Animal.alive.append(self)
+
+    def __repr__(self):
+        return f"{{Name: {self.name}, Health: {self.health}, \
+Hidden: {self.hidden}}}"
+
+
+class Herbivore(Animal):
+    def hide(self):
+        self.hidden = not self.hidden
+
+
+class Carnivore(Animal):
+    def bite(self, prey: Animal) -> None:
+        if isinstance(prey, Herbivore):
+            if prey.hidden is False:
+                prey.health -= 50
+                if prey.health <= 0:
+                    xlist = [animal for animal in Animal.alive
+                             if animal.name is not prey.name]
+                    Animal.alive = xlist
