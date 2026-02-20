@@ -1,8 +1,9 @@
 class Animal:
     alive = []
 
-    def __init__(self, name: str) -> None:
-        self.health = 100
+    def __init__(self, name: str, health: int = 100, 
+                 hidden: bool = False) -> None:
+        self.health = health
         self.name = name
         self.hidden = False
         Animal.alive.append(self)
