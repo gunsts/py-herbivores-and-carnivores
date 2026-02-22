@@ -28,9 +28,10 @@ class Carnivore(Animal):
     def bite(self,
              prey: Herbivore
              ) -> None:
-        if prey.hidden is False:
-            prey.health -= 50
-            if prey.health <= 0:
-                remaining_animal = [animal for animal in Animal.alive
-                                    if animal != prey]
-                Animal.alive = remaining_animal
+        if isinstance(prey, Herbivore):
+            if prey.hidden is False:
+                prey.health -= 50
+                if prey.health <= 0:
+                    remaining_animal = [animal for animal in Animal.alive
+                                        if animal != prey]
+                    Animal.alive = remaining_animal
